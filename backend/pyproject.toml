@@ -12,7 +12,9 @@ dependencies = [
     "django-redis>=6.0.0",
     "djangorestframework>=3.17.1",
     "djangorestframework-simplejwt>=5.5.1",
+    "gunicorn>=26.0.0",
     "pillow>=12.2.0",
     "psycopg2-binary>=2.9.12",
+    "uvicorn[standard]>=0.46.0",
     "weasyprint>=68.1",
 ]
