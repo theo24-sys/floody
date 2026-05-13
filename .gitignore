@@ -1,0 +1,12 @@
+.venv/
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+mobile/.dart_tool/
+mobile/.packages
+mobile/build/
+mobile/.flutter-plugins*
+mobile/bin/
+mobile/ios/Flutter/Generated.xcconfig
+mobile/android/local.properties

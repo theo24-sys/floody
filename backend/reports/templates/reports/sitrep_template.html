@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; }
+        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .status-verified { color: green; font-weight: bold; }
+        .status-pending { color: orange; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .data-table th, .data-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .footer { margin-top: 50px; font-size: 10px; color: #777; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FloodMap-K™ Incident Report (SITREP)</h1>
+        <p>Generated on: {{ report.timestamp }}</p>
+    </div>
+
+    <h3>Incident Summary</h3>
+    <table class="data-table">
+        <tr><th>Report ID</th><td>#{{ report.id }}</td></tr>
+        <tr><th>Category</th><td>{{ report.category|upper }}</td></tr>
+        <tr><th>Severity</th><td>{{ report.severity|upper }}</td></tr>
+        <tr><th>Location</th><td>{{ report.location.y }}, {{ report.location.x }}</td></tr>
+        <tr><th>Status</th><td class="status-{{ report.status }}">{{ report.status|upper }}</td></tr>
+        <tr><th>Confirmations</th><td>{{ report.confirmations|length }}</td></tr>
+    </table>
+
+    {% if report.image %}
+    <h3>Visual Proof</h3>
+    <img src="{{ report.image.url }}" style="max-width: 100%; border-radius: 8px;">
+    {% endif %}
+
+    <div class="footer">
+        <p>This report was generated automatically by the FloodMap-K™ Trust Engine. 
+        Data provided by community sensors in Kenya.</p>
+    </div>
+</body>
+</html>
