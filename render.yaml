@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: floodmap-backend
+    env: python
+    buildCommand: "cd backend && uv sync --frozen && python manage.py collectstatic --noinput"
+    startCommand: "cd backend && python manage.py migrate --noinput && gunicorn floodmap_backend.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: floodmap-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: ALLOWED_HOSTS
+        value: "*"
+      - key: DEBUG
+        value: "False"
+
+databases:
+  - name: floodmap-db
+    plan: free # No card required for free plan
+    region: frankfurt # Or choose one close to you
+    postgresMajorVersion: 15
